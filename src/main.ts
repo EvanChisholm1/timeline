@@ -42,7 +42,7 @@ function render() {
         7
     )} % done</h2> <h2>The school year is ${yearProgress.toPrecision(
         7
-    )}% done</h2><div> <small>An Evening Project by Evan Chisholm</small`;
+    )}% done</h2><div> <small>A Project by Evan Chisholm</small`;
     requestAnimationFrame(render);
 }
 
