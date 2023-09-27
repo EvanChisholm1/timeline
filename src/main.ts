@@ -39,9 +39,9 @@ function render() {
     const yearProgress = (timeSinceStart / startToEnd) * 100;
 
     app!.innerHTML = `<div class=""wrapper"><h2>Semester 1 is ${semesterProgress.toPrecision(
-        7
+        9
     )} % done</h2> <h2>The school year is ${yearProgress.toPrecision(
-        7
+        9
     )}% done</h2><div> <small>A Project by Evan Chisholm</small`;
     requestAnimationFrame(render);
 }
