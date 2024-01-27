@@ -13,10 +13,10 @@ function render() {
 
     const semester2Start = new Date();
     semester2Start.setFullYear(2024);
-    semester2Start.setMonth(1);
-    semester2Start.setDate(5);
-    semester2Start.setHours(0);
-    semester2Start.setMinutes(0);
+    semester2Start.setMonth(0);
+    semester2Start.setDate(29);
+    semester2Start.setHours(14);
+    semester2Start.setMinutes(15);
     semester2Start.setSeconds(0);
     semester2Start.setMilliseconds(0);
 
