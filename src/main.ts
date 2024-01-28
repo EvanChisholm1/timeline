@@ -1,6 +1,14 @@
 const app = document.querySelector("#app");
 if (!app) throw new Error("no app element found");
 
+function getDaysUntilMidterm2() {
+    const current = new Date();
+    const mid = new Date("2024-05-02");
+    const timeDiff = mid.getTime() - current.getTime();
+    const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
+    return daysDiff;
+}
+
 function render() {
     const schoolYearStart = new Date();
     schoolYearStart.setFullYear(2023);
@@ -40,11 +48,17 @@ function render() {
 
     const precision = 9;
 
-    app!.innerHTML = `<div class=""wrapper"><h2>Semester 1 is ${semesterProgress.toPrecision(
+    app!.innerHTML = `<div class="wrapper"><h2>Semester 1 is ${semesterProgress.toPrecision(
         precision
-    )} % done</h2> <h2>The school year is ${yearProgress.toPrecision(
+    )} % done</h2>
+
+    <h2>The school year is ${yearProgress.toPrecision(precision)}% done</h2>
+
+    <h2>${getDaysUntilMidterm2().toPrecision(
         precision
-    )}% done</h2><div> <small>A Project by Evan Chisholm</small`;
+    )} days until midterm semester 2 </h2>
+    
+    <div> <small>A Project by Evan Chisholm</small>`;
     requestAnimationFrame(render);
 }
 
