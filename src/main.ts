@@ -40,17 +40,13 @@ function render() {
     const current = new Date();
 
     const timeSinceStart = current.getTime() - schoolYearStart.getTime();
-    const sem1ToSem2 = semester2Start.getTime() - schoolYearStart.getTime();
-    const semesterProgress = (timeSinceStart / sem1ToSem2) * 100;
 
     const startToEnd = schoolYearEnd.getTime() - schoolYearStart.getTime();
     const yearProgress = (timeSinceStart / startToEnd) * 100;
 
     const precision = 9;
 
-    app!.innerHTML = `<div class="wrapper"><h2>Semester 1 is ${semesterProgress.toPrecision(
-        precision
-    )} % done</h2>
+    app!.innerHTML = `<div class="wrapper"><h2>✅ Semester 1 is done </h2>
 
     <h2>The school year is ${yearProgress.toPrecision(precision)}% done</h2>
 
