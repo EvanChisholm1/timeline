@@ -37,6 +37,12 @@ function render() {
     schoolYearEnd.setSeconds(0);
     schoolYearEnd.setMilliseconds(0);
 
+    const graduationTime = new Date();
+    graduationTime.setFullYear(2024);
+    graduationTime.setMonth(5);
+    graduationTime.setDate(17);
+    graduationTime.setHours(3, 0, 0, 0);
+
     const current = new Date();
 
     const timeSinceStart = current.getTime() - schoolYearStart.getTime();
@@ -44,15 +50,41 @@ function render() {
     const startToEnd = schoolYearEnd.getTime() - schoolYearStart.getTime();
     const yearProgress = (timeSinceStart / startToEnd) * 100;
 
+    const daysToGrad = Math.floor(
+        (graduationTime.getTime() - current.getTime()) / (1000 * 60 * 60 * 24)
+    );
+
+    let remainder =
+        (graduationTime.getTime() - current.getTime()) % (1000 * 60 * 60 * 24);
+
+    const hours = Math.floor(remainder / (1000 * 60 * 60));
+
+    remainder =
+        (graduationTime.getTime() - current.getTime()) % (1000 * 60 * 60);
+
+    const minutes = Math.floor(remainder / (1000 * 60));
+
+    remainder = (graduationTime.getTime() - current.getTime()) % (1000 * 60);
+
+    const seconds = Math.floor(remainder / 1000);
+
+    remainder = (graduationTime.getTime() - current.getTime()) % 1000;
+    const ms = Math.floor(remainder);
+
     const precision = 9;
 
-    app!.innerHTML = `<div class="wrapper"><h2>✅ Semester 1 is done </h2>
+    app!.innerHTML = `<div class="wrapper"><h2>  Semester 1 ✅</h2>
+    <h2> Midterm Semester 2 ✅ </h2>
 
     <h2>The school year is ${yearProgress.toPrecision(precision)}% done</h2>
 
-    <h2>${getDaysUntilMidterm2().toPrecision(
-        precision
-    )} days until midterm semester 2 </h2>
+
+    <h2> Time To Grad:
+    <br/>
+    ${daysToGrad} days ${hours} hours ${minutes} minutes ${seconds} seconds ${ms} miliseconds </h2>
+    
+
+
     
     <div> <small>A Project by Evan Chisholm</small>`;
     requestAnimationFrame(render);
