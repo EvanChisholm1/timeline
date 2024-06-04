@@ -40,7 +40,7 @@ function render() {
     const graduationTime = new Date();
     graduationTime.setFullYear(2024);
     graduationTime.setMonth(5);
-    graduationTime.setDate(17);
+    graduationTime.setDate(27);
     graduationTime.setHours(3, 0, 0, 0);
 
     const current = new Date();
