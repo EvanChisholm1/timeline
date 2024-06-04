@@ -81,7 +81,13 @@ function render() {
 
     <h2> Time To Grad:
     <br/>
-    ${daysToGrad} days ${hours} hours ${minutes} minutes ${seconds} seconds ${ms} miliseconds </h2>
+    ${daysToGrad} days ${hours.toString().padStart(2, "0")} hours ${minutes
+        .toString()
+        .padStart(2, "0")} minutes ${seconds
+        .toString()
+        .padStart(2, "0")} seconds ${ms
+        .toString()
+        .padStart(3, "0")} miliseconds </h2>
     
 
 
