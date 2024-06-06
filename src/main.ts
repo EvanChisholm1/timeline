@@ -1,13 +1,19 @@
+import { confetti } from "@tsparticles/confetti";
+
 const app = document.querySelector("#app");
 if (!app) throw new Error("no app element found");
 
-function getDaysUntilMidterm2() {
-    const current = new Date();
-    const mid = new Date("2024-05-02");
-    const timeDiff = mid.getTime() - current.getTime();
-    const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
-    return daysDiff;
-}
+const wrapperDiv = document.querySelector(".wrapper") as HTMLDivElement;
+
+const confettiButton = document.querySelector(".confetti") as HTMLButtonElement;
+
+confettiButton.addEventListener("click", () => {
+    confetti({
+        particleCount: 200,
+        spread: 360,
+        origin: { y: 0.5 },
+    });
+});
 
 function render() {
     const schoolYearStart = new Date();
@@ -19,29 +25,13 @@ function render() {
     schoolYearStart.setSeconds(0);
     schoolYearStart.setMilliseconds(0);
 
-    const semester2Start = new Date();
-    semester2Start.setFullYear(2024);
-    semester2Start.setMonth(0);
-    semester2Start.setDate(29);
-    semester2Start.setHours(14);
-    semester2Start.setMinutes(15);
-    semester2Start.setSeconds(0);
-    semester2Start.setMilliseconds(0);
-
-    const schoolYearEnd = new Date();
-    schoolYearEnd.setFullYear(2024);
-    schoolYearEnd.setMonth(5);
-    schoolYearEnd.setDate(26);
-    schoolYearEnd.setHours(0);
-    schoolYearEnd.setMinutes(0);
-    schoolYearEnd.setSeconds(0);
-    schoolYearEnd.setMilliseconds(0);
-
     const graduationTime = new Date();
     graduationTime.setFullYear(2024);
     graduationTime.setMonth(5);
     graduationTime.setDate(27);
     graduationTime.setHours(12 + 3, 0, 0, 0);
+
+    const schoolYearEnd = graduationTime;
 
     const current = new Date();
 
@@ -73,7 +63,7 @@ function render() {
 
     const precision = 9;
 
-    app!.innerHTML = `<div class="wrapper"><h2>  Semester 1 ✅</h2>
+    wrapperDiv.innerHTML = `<h2> Semester 1 ✅ </h2>
     <h2> Midterm Semester 2 ✅ </h2>
 
     <h2>The school year is ${yearProgress.toPrecision(precision)}% done</h2>
@@ -87,12 +77,8 @@ function render() {
         .toString()
         .padStart(2, "0")} seconds ${ms
         .toString()
-        .padStart(3, "0")} miliseconds </h2>
-    
+        .padStart(3, "0")} miliseconds </h2>`;
 
-
-    
-    <div> <small>A Project by Evan Chisholm</small>`;
     requestAnimationFrame(render);
 }
 

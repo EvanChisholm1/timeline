@@ -20,7 +20,7 @@
             }
 
             @media (prefers-color-scheme: dark) {
-                * {
+                body {
                     background-color: black;
                     color: white;
                 }
@@ -35,10 +35,26 @@
                     width: 300px;
                 }
             }
+
+            .confetti {
+                background-color: rgb(91, 91, 91);
+                border: none;
+                outline: none;
+                padding: 10px;
+                border-radius: 10px;
+                color: white;
+                font-size: 15px;
+                font-weight: bold;
+            }
         </style>
     </head>
     <body>
-        <div id="app"></div>
+        <div id="app">
+            <div class="wrapper"></div>
+            <button class="confetti">Confetti!</button>
+            <small>A Project by Evan Chisholm</small>
+        </div>
+
         <script type="module" src="/src/main.ts"></script>
         <script
             async
