@@ -1,5 +1,27 @@
 import { confetti } from "@tsparticles/confetti";
 
+let count = 1;
+
+const ws = new WebSocket("wss://timeline-server-xxmj.onrender.com");
+
+ws.addEventListener("message", (ev) => {
+    const data: {
+        type: string;
+        count: number;
+    } = JSON.parse(ev.data);
+
+    count = data.count;
+    console.log(count);
+
+    if (data.type === "confetti") {
+        confetti({
+            particleCount: 200,
+            spread: 360,
+            origin: { y: 0.5 },
+        });
+    }
+});
+
 const app = document.querySelector("#app");
 if (!app) throw new Error("no app element found");
 
@@ -13,6 +35,7 @@ confettiButton.addEventListener("click", () => {
         spread: 360,
         origin: { y: 0.5 },
     });
+    ws.send(JSON.stringify({ type: "confetti" }));
 });
 
 function render() {
@@ -77,7 +100,11 @@ function render() {
         .toString()
         .padStart(2, "0")} seconds ${ms
         .toString()
-        .padStart(3, "0")} miliseconds </h2>`;
+        .padStart(3, "0")} miliseconds </h2>
+    
+    <small>currently ${count} ${
+        count > 1 ? "people" : "person"
+    } wasting their time</small>`;
 
     requestAnimationFrame(render);
 }
