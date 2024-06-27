@@ -1,4 +1,5 @@
 import { confetti } from "@tsparticles/confetti";
+import { Fireworks } from "fireworks-js";
 
 let count = 1;
 
@@ -24,6 +25,10 @@ ws.addEventListener("message", (ev) => {
 
 const app = document.querySelector("#app");
 if (!app) throw new Error("no app element found");
+
+const container = document.querySelector(".container") as HTMLDivElement;
+
+const fireworks = new Fireworks(container, {});
 
 const wrapperDiv = document.querySelector(".wrapper") as HTMLDivElement;
 
@@ -62,6 +67,7 @@ function render() {
 
     const startToEnd = schoolYearEnd.getTime() - schoolYearStart.getTime();
     const yearProgress = (timeSinceStart / startToEnd) * 100;
+    // const yearProgress = 100.1;
 
     const daysToGrad = Math.floor(
         (graduationTime.getTime() - current.getTime()) / (1000 * 60 * 60 * 24)
@@ -85,6 +91,15 @@ function render() {
     const ms = Math.floor(remainder);
 
     const precision = 9;
+
+    if (yearProgress > 100) {
+        fireworks.start();
+        wrapperDiv.innerHTML = `
+            <h1> CONGRATS YOU MADE IT!! 🎉 </h1>
+            <h2> why are you still here? it's over man, go outside, touch grass </h2>
+        `;
+        return;
+    }
 
     wrapperDiv.innerHTML = `<h2> Semester 1 ✅ </h2>
     <h2> Midterm Semester 2 ✅ </h2>
